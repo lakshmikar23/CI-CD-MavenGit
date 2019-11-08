@@ -1,6 +1,6 @@
 pipeline {
 	agent {
-              label 'Linux-lab'      
+              label 'Linux-leb'      
 	     }
 	stages {
 		stage('---clean---') {
