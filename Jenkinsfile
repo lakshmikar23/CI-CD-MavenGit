@@ -3,7 +3,7 @@ pipeline {
               label 'Linux-leb'      
 	     }
 	stages {
-		stage('---clean---') {
+		stage('---clean package---') {
 			steps {
 				tool name: 'Maven3.6.2', type: 'maven'
 				sh "mvn clean"
