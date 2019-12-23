@@ -15,6 +15,5 @@ public interface User extends Domain{
 	void setEmail(String email);
 
 	String getPassword();
-
 	void setPassword(String password);
 }
