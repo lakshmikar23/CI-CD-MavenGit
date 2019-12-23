@@ -9,7 +9,7 @@ pipeline {
 				sh "mvn clean"
 			}
 		}
-		stage('---test---') {
+		stage('---test package---') {
 			steps {
 				tool name: 'Maven3.6.2', type: 'maven'
                                 sh "mvn test"
