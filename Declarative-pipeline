@@ -25,13 +25,13 @@ pipeline{
                     stage("deploy")
                    {
                      steps{
-                            sshagent(['web-server']) {
+                            sshagent(['centos-webserver']){
                        sh """
-                               scp -o StrictHostKeyChecking=no target/myweb.war  ubuntu@h35.180.55.122:/tomcat/webapps/
+                               scp -o StrictHostKeyChecking=no target/myweb.war  centos@172.31.29.102:/tomcat/webapps/
                     
-                               ssh ubuntu@h35.180.55.122 /tomcat/bin/shutdown.sh
+                               ssh centos@172.31.29.102 /tomcat/bin/shutdown.sh
                     
-                                ssh ubuntu@h35.180.55.122 /tomcat/bin/startup.sh
+                                ssh centos@172.31.29.102 /tomcat/bin/startup.sh
                 
                          """       
                                    }
