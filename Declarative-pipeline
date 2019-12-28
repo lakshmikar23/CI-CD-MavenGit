@@ -27,11 +27,11 @@ pipeline{
                      steps{
                             sshagent(['centos-webserver']){
                        sh """
-                               scp -o StrictHostKeyChecking=no target/myweb.war  webserver@172.31.29.102:/tomcat/webapps/
+                               scp -o StrictHostKeyChecking=no target/myweb.war 172.31.29.102:/tomcat/webapps/
                     
-                               ssh webserver@172.31.29.102 /tomcat/bin/shutdown.sh
+                               ssh 172.31.29.102 /tomcat/bin/shutdown.sh
                     
-                                ssh webserver@172.31.29.102 /tomcat/bin/startup.sh
+                                ssh 172.31.29.102 /tomcat/bin/startup.sh
                 
                          """       
                                    }
