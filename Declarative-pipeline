@@ -18,9 +18,26 @@ pipeline{
                     steps{
                          
                          sh "${mvnCMD} clean package"
+                         sh "mv target/*.war target/myweb.war"
                          
                          }
                     }
+                    stage("deploy")
+                   {
+                     steps{
+                            sshagent(['web-server']) {
+                       sh """
+                               scp -o StrictHostKeyChecking=no target/myweb.war  ubuntu@h35.180.55.122:/tomcat/webapps/
+                    
+                               ssh ubuntu@h35.180.55.122 /tomcat/bin/shutdown.sh
+                    
+                                ssh ubuntu@h35.180.55.122 /tomcat/bin/startup.sh
+                
+                         """       
+                                   }
+                            }
+                         }
+
                }
            }    
    
