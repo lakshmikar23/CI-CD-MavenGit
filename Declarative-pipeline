@@ -25,16 +25,9 @@ pipeline{
                     stage("deploy")
                    {
                      steps{
-                            sshagent(['centos-webserver']){
-                       sh """
-                               scp -o StrictHostKeyChecking=no target/myweb.war centos@172.31.29.102:/tomcat/webapps/
-                    
-                               ssh centos@172.31.29.102 /tomcat/bin/shutdown.sh
-                    
-                                ssh centos@172.31.29.102 /tomcat/bin/startup.sh
-                
-                         """       
-                                   }
+                     
+                           sshPublisher(publishers: [sshPublisherDesc(configName: 'tomcat server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/tomcat/webapps', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])                    
+                     
                             }
                          }
 
