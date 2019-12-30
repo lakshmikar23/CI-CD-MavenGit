@@ -30,16 +30,7 @@ pipeline{
                      
                             }
                          }
-                    stage("email notification")
-                        {
-                           steps{
-                                 mail bcc: '', body: '''welcome to jenkins pipeline email alerts
-    Thanks
- lakshmikar m''', cc: '', from: '', replyTo: '', subject: 'jenkins declarative pipeline report', to: 'm.lakshmikar23@gmail.com'
-                         
-                              }
-                        }      
-
+                    
                }
            }    
    
